@@ -1,13 +1,9 @@
-<body>
-<div id="preloder">
-  <div class="loader"></div>
-</div>
-<app-header></app-header>
-<!-- Hero Section Begin -->
+
 <section class="hero">
   <div class="container">
     <div class="hero__slider owl-carousel">
-      <div class="hero__items set-bg" data-setbg="img/hero/hero-1.jpg">
+      <div class="hero__items set-bg"
+           [style.background-image]="'url(assets/img/hero/hero-1.jpg)'">
         <div class="row">
           <div class="col-lg-6">
             <div class="hero__text">
@@ -19,7 +15,7 @@
           </div>
         </div>
       </div>
-      <div class="hero__items set-bg" data-setbg="img/hero/hero-1.jpg">
+      <div class="hero__items set-bg" [style.background-image]="'url(assets/img/hero/hero-1.jpg)'">
         <div class="row">
           <div class="col-lg-6">
             <div class="hero__text">
@@ -31,7 +27,7 @@
           </div>
         </div>
       </div>
-      <div class="hero__items set-bg" data-setbg="img/hero/hero-1.jpg">
+      <div class="hero__items set-bg" [style.background-image]="'url(assets/img/hero/hero-1.jpg)'">
         <div class="row">
           <div class="col-lg-6">
             <div class="hero__text">
@@ -46,7 +42,4 @@
     </div>
   </div>
 </section>
-<!-- Hero Section End -->
-<router-outlet></router-outlet>
-<app-footer></app-footer>
-</body>
+
