@@ -1,1 +1,8 @@
-<p>search-dialog works!</p>
+<div class="search-model" [style.display]="openSearch ? 'block' : 'none'">
+  <div class="h-100 d-flex align-items-center justify-content-center">
+    <div class="search-close-switch" (click)="openSearch = false"><i class="icon_close"></i></div>
+    <form class="search-model-form">
+      <input type="text" id="search-input" placeholder="Search here.....">
+    </form>
+  </div>
+</div>

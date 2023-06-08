@@ -9,7 +9,7 @@ import { MoviesSliderComponent } from './homepage/movies-slider/movies-slider.co
 import { FooterComponent } from './footer/footer.component';
 import { AppRoutingModule } from './app-routing.module';
 import { RecommendedMoviesComponent } from './homepage/recommended-movies/recommended-movies.component';
-import { SearchDialogComponent } from './common/search-dialog/search-dialog.component';
+import { SearchDialogComponent } from './common/component/search-dialog/search-dialog.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +26,8 @@ import { SearchDialogComponent } from './common/search-dialog/search-dialog.comp
     RouterOutlet,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
