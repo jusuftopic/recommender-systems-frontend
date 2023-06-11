@@ -1,23 +1,23 @@
 <!-- Footer Section Begin -->
 <footer class="footer">
   <div class="page-up">
-    <a href="#" id="scrollToTopButton"><span class="arrow_carrot-up"></span></a>
+    <a id="scrollToTopButton"><span class="arrow_carrot-up"></span></a>
   </div>
   <div class="container">
     <div class="row">
       <div class="col-lg-3">
         <div class="footer__logo">
-          <a href="./index.html"><img src="img/logo.png" alt=""></a>
+          <a><img src="img/logo.png" alt=""></a>
         </div>
       </div>
       <div class="col-lg-6">
         <div class="footer__nav">
           <ul>
             <li [class.active]="isHomepageActive" (click)="isHomepageActive = true">
-              <a href="./index.html">Homepage</a>
+              <a>Homepage</a>
             </li>
             <li [class.active]="!isHomepageActive" (click)="isHomepageActive = false">
-              <a href="./categories.html">Categories</a>
+              <a>Categories</a>
             </li>
           </ul>
         </div>

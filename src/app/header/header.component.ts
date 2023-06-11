@@ -1,5 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
-import { OpenSearchService } from '../common/service/open-search-service/open-search.service';
+import { OpenSearchService } from '../common/service/open-search.service';
 
 
 @Component({
@@ -17,7 +17,6 @@ export class HeaderComponent {
   }
 
   openSearch(): void {
-    console.log("Sent")
     this.searchMovies = true;
     this.openSearchService.openSearchDialog(this.searchMovies);
   }
