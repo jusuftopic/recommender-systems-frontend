@@ -2,10 +2,11 @@
 export interface MovieDTO {
   id?: number;
   title?: string;
+  genres?: string[];
+  synopsis?: string;
+  popularity?: number;
   img?: string;
-  genres: string[];
-  similar_genres: string[];
-  genre_similarity?: number;
-  recommended_movies?: MovieDTO[];
-
+  cast?: string[];
+  director?: string[];
+  writer?: string[];
 }

@@ -13,77 +13,104 @@ import { MovieDTO } from '../model/movie.model';
 })
 export class MovieService {
 
-  readonly moviesBaseUrl = environment.baseUrl + '/movies';
-
   //TODO mocked data - will be deleted
   movies: MovieDTO[] = [
     {
       id: 1,
       title: 'The Seven Deadly Sins: Wrath of the Gods',
-      img: 'assets/img/trending/trend-1.jpg',
-      genres: ['Action', 'Drama'],
-      similar_genres: ['Action', 'Drama'],
-      genre_similarity: 1,
-      recommended_movies: []
+      synopsis: 'Led by Woody, Andy\'s toys live happily in his room until Andy\'s birthday brings Buzz Lightyear onto the scene. Afraid of losing his place in Andy\'s heart, Woody plots against Buzz. But when circumstances separate Buzz and Woody from their owner, the duo eventually learns to put aside their differences.',
+      popularity: 21.946943,
+      img: 'https://image.tmdb.org/t/p/original//uXDfjJbdP4ijW5hWSBrPrlKpxab.jpg',
+      genres: ['Action', 'Drama', 'Family'],
+      cast: ['Tom Hanks', 'Tim Allen', 'Don Rickles', 'Jim Varney'],
+      director: ['John Lasseter'],
+      writer: ['Joss Whedon', 'Andrew Stanton', 'Joel Cohen', 'Alec Sokolow']
     },
     {
-      id: 2,
-      title: 'Gintama Movie 2: Kanketsu-hen - Yorozuya yo Eien',
-      img: 'assets/img/trending/trend-2.jpg',
-      genres: ['Action', 'Drama'],
-      similar_genres: ['Action', 'Drama'],
-      genre_similarity: 1,
-      recommended_movies: []
+      id: 1,
+      title: 'The Seven Deadly Sins: Wrath of the Gods',
+      synopsis: 'Led by Woody, Andy\'s toys live happily in his room until Andy\'s birthday brings Buzz Lightyear onto the scene. Afraid of losing his place in Andy\'s heart, Woody plots against Buzz. But when circumstances separate Buzz and Woody from their owner, the duo eventually learns to put aside their differences.',
+      popularity: 21.946943,
+      img: 'https://image.tmdb.org/t/p/original//uXDfjJbdP4ijW5hWSBrPrlKpxab.jpg',
+      genres: ['Action', 'Drama', 'Family'],
+      cast: ['Tom Hanks', 'Tim Allen', 'Don Rickles', 'Jim Varney'],
+      director: ['John Lasseter'],
+      writer: ['Joss Whedon', 'Andrew Stanton', 'Joel Cohen', 'Alec Sokolow']
     },
     {
-      id: 3,
-      title: 'Shingeki no Kyojin Season 3 Part 2',
-      img: 'assets/img/trending/trend-3.jpg',
-      genres: ['Action', 'Drama'],
-      similar_genres: ['Action', 'Drama'],
-      genre_similarity: 1,
-      recommended_movies: []
+      id: 1,
+      title: 'The Seven Deadly Sins: Wrath of the Gods',
+      synopsis: 'Led by Woody, Andy\'s toys live happily in his room until Andy\'s birthday brings Buzz Lightyear onto the scene. Afraid of losing his place in Andy\'s heart, Woody plots against Buzz. But when circumstances separate Buzz and Woody from their owner, the duo eventually learns to put aside their differences.',
+      popularity: 21.946943,
+      img: 'https://image.tmdb.org/t/p/original//uXDfjJbdP4ijW5hWSBrPrlKpxab.jpg',
+      genres: ['Action', 'Drama', 'Family'],
+      cast: ['Tom Hanks', 'Tim Allen', 'Don Rickles', 'Jim Varney'],
+      director: ['John Lasseter'],
+      writer: ['Joss Whedon', 'Andrew Stanton', 'Joel Cohen', 'Alec Sokolow']
     },
     {
-      id: 4,
-      title: 'Fullmetal Alchemist: Brotherhood',
-      img: 'assets/img/trending/trend-4.jpg',
-      genres: ['Action', 'Drama'],
-      similar_genres: ['Action', 'Drama'],
-      genre_similarity: 1,
-      recommended_movies: []
+      id: 1,
+      title: 'The Seven Deadly Sins: Wrath of the Gods',
+      synopsis: 'Led by Woody, Andy\'s toys live happily in his room until Andy\'s birthday brings Buzz Lightyear onto the scene. Afraid of losing his place in Andy\'s heart, Woody plots against Buzz. But when circumstances separate Buzz and Woody from their owner, the duo eventually learns to put aside their differences.',
+      popularity: 21.946943,
+      img: 'https://image.tmdb.org/t/p/original//uXDfjJbdP4ijW5hWSBrPrlKpxab.jpg',
+      genres: ['Action', 'Drama', 'Family'],
+      cast: ['Tom Hanks', 'Tim Allen', 'Don Rickles', 'Jim Varney'],
+      director: ['John Lasseter'],
+      writer: ['Joss Whedon', 'Andrew Stanton', 'Joel Cohen', 'Alec Sokolow']
     },
     {
-      id: 5,
-      title: 'Code Geass: Hangyaku no Lelouch R2',
-      img: 'assets/img/trending/trend-6.jpg',
-      genres: ['Action', 'Drama'],
-      similar_genres: ['Action', 'Drama'],
-      genre_similarity: 1,
-      recommended_movies: []
+      id: 1,
+      title: 'The Seven Deadly Sins: Wrath of the Gods',
+      synopsis: 'Led by Woody, Andy\'s toys live happily in his room until Andy\'s birthday brings Buzz Lightyear onto the scene. Afraid of losing his place in Andy\'s heart, Woody plots against Buzz. But when circumstances separate Buzz and Woody from their owner, the duo eventually learns to put aside their differences.',
+      popularity: 21.946943,
+      img: 'https://image.tmdb.org/t/p/original//uXDfjJbdP4ijW5hWSBrPrlKpxab.jpg',
+      genres: ['Action', 'Drama', 'Family'],
+      cast: ['Tom Hanks', 'Tim Allen', 'Don Rickles', 'Jim Varney'],
+      director: ['John Lasseter'],
+      writer: ['Joss Whedon', 'Andrew Stanton', 'Joel Cohen', 'Alec Sokolow']
     },
     {
-      id: 6,
-      title: 'Shiratorizawa Gakuen Koukou',
-      img: 'assets/img/trending/trend-5.jpg',
-      genres: ['Action', 'Drama'],
-      similar_genres: ['Action', 'Drama'],
-      genre_similarity: 1,
-      recommended_movies: []
+      id: 1,
+      title: 'The Seven Deadly Sins: Wrath of the Gods',
+      synopsis: 'Led by Woody, Andy\'s toys live happily in his room until Andy\'s birthday brings Buzz Lightyear onto the scene. Afraid of losing his place in Andy\'s heart, Woody plots against Buzz. But when circumstances separate Buzz and Woody from their owner, the duo eventually learns to put aside their differences.',
+      popularity: 21.946943,
+      img: 'https://image.tmdb.org/t/p/original//uXDfjJbdP4ijW5hWSBrPrlKpxab.jpg',
+      genres: ['Action', 'Drama', 'Family'],
+      cast: ['Tom Hanks', 'Tim Allen', 'Don Rickles', 'Jim Varney'],
+      director: ['John Lasseter'],
+      writer: ['Joss Whedon', 'Andrew Stanton', 'Joel Cohen', 'Alec Sokolow']
     }
-  ]
+  ];
 
   constructor(private http: HttpClient) { }
 
-  /**
-   * Search for the movie a user typed in a search-dialog
-   * @param movie Movie to search
-   */
-  public searchMovie(movie: string): Observable<MovieDTO> {
-    //TODO mocked data - will be deleted
+
+  public getMovieById(movieId: string): Observable<MovieDTO> {
     return of(this.movies[0]);
-   // return this.http.post<MovieDTO>(this.moviesBaseUrl + '/search', movie);
+  //  return this.http.get<MovieDTO>('movie/' + movieId);
   }
+
+  public getGenreSimilarMovies(movieId: number): Observable<MovieDTO[]> {
+    return this.http.get<MovieDTO[]>('genres/' + movieId);
+  }
+
+  public getCastCrewSimilarMovies(movieId: number): Observable<MovieDTO[]> {
+     return this.http.get<MovieDTO[]>('cast/' + movieId);
+  }
+
+  public getRatingsSimilarMovies(movieId: number): Observable<MovieDTO[]> {
+    return this.http.get<MovieDTO[]>('ratings/' + movieId);
+  }
+
+  public getSynopsesSimilarMovies(movieId: number): Observable<MovieDTO[]> {
+    return this.http.get<MovieDTO[]>('synopses/' + movieId);
+  }
+
+  public getTitleSimilarMovies(movieId: number): Observable<MovieDTO[]> {
+    return this.http.get<MovieDTO[]>('titles/' + movieId);
+  }
+
 
   public getTrendingMovies(): Observable<MovieDTO[]> {
     //TODO mocked data - will be deleted

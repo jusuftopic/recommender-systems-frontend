@@ -2,11 +2,12 @@ import { Component, OnDestroy } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 import { OpenSearchService } from '../../service/open-search.service';
 import { FormControl } from '@angular/forms';
-import { MovieService } from '../../../../api/service/movie.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-dialog',
-  templateUrl: './search-dialog.component.html'
+  templateUrl: './search-dialog.component.html',
+  styleUrls: ['search-dialog.component.scss']
 })
 export class SearchDialogComponent implements OnDestroy {
 
@@ -14,7 +15,7 @@ export class SearchDialogComponent implements OnDestroy {
 
   destroy$: Subject<void> = new Subject<void>();
 
-  searchInput = new FormControl('')
+  movieIdFormControl = new FormControl('')
 
 
   openSearchSubscription$ = this.openSearchService.openSearchDialog$
@@ -22,25 +23,18 @@ export class SearchDialogComponent implements OnDestroy {
     .subscribe(openSearch => this.openSearch = openSearch)
 
   constructor(private openSearchService: OpenSearchService,
-              private movieService: MovieService,
+              private router: Router
               ) {
   }
 
   /**
-   * Method triggered every time user types something in search input field. It sends
-   * searched word to the backend in order to get recommended movies.
-   *
-   * @param searchResult Input event
+   * Method triggered every time users type movie id in search input field and press enter button.
+   * They will be navigated to details page.
    */
-  onSearch(searchResult: any): void {
-    const movieToSearch = searchResult?.target?.value;
-    if (movieToSearch) {
-      this.movieService.searchMovie(movieToSearch)
-        .pipe(takeUntil(this.destroy$))
-        .subscribe({
-          next: (movie) => console.log(movie),
-          error: (err) => console.log(err)
-        })
+  onEnter(): void {
+    const movieId = this.movieIdFormControl?.value;
+    if (movieId) {
+      this.router.navigate(['movie-details', movieId]);
     }
   }
 

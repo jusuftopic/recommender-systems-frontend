@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { HomepageComponent } from './homepage/homepage.component';
-import { RouterOutlet } from '@angular/router';
+import { RouterModule, RouterOutlet } from '@angular/router';
 import { MoviesSliderComponent } from './homepage/movies-slider/movies-slider.component';
 import { FooterComponent } from './footer/footer.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -13,6 +13,7 @@ import { SearchDialogComponent } from './common/component/search-dialog/search-d
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MovieDetailsComponent } from './movie-details/movie-details.component';
+import { SimilayMovieCardsComponent } from './common/component/similay-movie-cards/similay-movie-cards.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { MovieDetailsComponent } from './movie-details/movie-details.component';
     FooterComponent,
     MoviesHomepageComponent,
     SearchDialogComponent,
-    MovieDetailsComponent
+    MovieDetailsComponent,
+    SimilayMovieCardsComponent
   ],
   imports: [
     /* COMMON */
@@ -31,6 +33,7 @@ import { MovieDetailsComponent } from './movie-details/movie-details.component';
     RouterOutlet,
     ReactiveFormsModule,
     HttpClientModule,
+    RouterModule,
 
     /* APPLICATION SPECIFIC */
     AppRoutingModule

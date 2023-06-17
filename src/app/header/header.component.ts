@@ -10,17 +10,12 @@ import { OpenSearchService } from '../common/service/open-search.service';
 export class HeaderComponent {
 
   isHomepageActive: boolean = true;
-  searchMovies: boolean = false;
 
 
   constructor(private openSearchService: OpenSearchService) {
   }
 
   openSearch(): void {
-    this.searchMovies = true;
-    this.openSearchService.openSearchDialog(this.searchMovies);
+    this.openSearchService.openSearchDialog(true);
   }
-
-
-
 }
