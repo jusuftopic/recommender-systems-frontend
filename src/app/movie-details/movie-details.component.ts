@@ -12,76 +12,11 @@ import { MovieDTO } from '../../api/model/movie.model';
 export class MovieDetailsComponent implements OnInit, OnDestroy {
 
   movie: MovieDTO | undefined;
-
-  //TODO delete
-  mockedMovies: MovieDTO[] = [
-    {
-      id: 1,
-      title: 'The Seven Deadly Sins: Wrath of the Gods',
-      synopsis: 'Led by Woody, Andy\'s toys live happily in his room until Andy\'s birthday brings Buzz Lightyear onto the scene. Afraid of losing his place in Andy\'s heart, Woody plots against Buzz. But when circumstances separate Buzz and Woody from their owner, the duo eventually learns to put aside their differences.',
-      popularity: 21.946943,
-      img: 'https://image.tmdb.org/t/p/original//uXDfjJbdP4ijW5hWSBrPrlKpxab.jpg',
-      genres: ['Action', 'Drama', 'Family'],
-      cast: ['Tom Hanks', 'Tim Allen', 'Don Rickles', 'Jim Varney'],
-      director: ['John Lasseter'],
-      writer: ['Joss Whedon', 'Andrew Stanton', 'Joel Cohen', 'Alec Sokolow']
-    },
-    {
-      id: 1,
-      title: 'The Seven Deadly Sins: Wrath of the Gods',
-      synopsis: 'Led by Woody, Andy\'s toys live happily in his room until Andy\'s birthday brings Buzz Lightyear onto the scene. Afraid of losing his place in Andy\'s heart, Woody plots against Buzz. But when circumstances separate Buzz and Woody from their owner, the duo eventually learns to put aside their differences.',
-      popularity: 21.946943,
-      img: 'https://image.tmdb.org/t/p/original//uXDfjJbdP4ijW5hWSBrPrlKpxab.jpg',
-      genres: ['Action', 'Drama', 'Family'],
-      cast: ['Tom Hanks', 'Tim Allen', 'Don Rickles', 'Jim Varney'],
-      director: ['John Lasseter'],
-      writer: ['Joss Whedon', 'Andrew Stanton', 'Joel Cohen', 'Alec Sokolow']
-    },
-    {
-      id: 1,
-      title: 'The Seven Deadly Sins: Wrath of the Gods',
-      synopsis: 'Led by Woody, Andy\'s toys live happily in his room until Andy\'s birthday brings Buzz Lightyear onto the scene. Afraid of losing his place in Andy\'s heart, Woody plots against Buzz. But when circumstances separate Buzz and Woody from their owner, the duo eventually learns to put aside their differences.',
-      popularity: 21.946943,
-      img: 'https://image.tmdb.org/t/p/original//uXDfjJbdP4ijW5hWSBrPrlKpxab.jpg',
-      genres: ['Action', 'Drama', 'Family'],
-      cast: ['Tom Hanks', 'Tim Allen', 'Don Rickles', 'Jim Varney'],
-      director: ['John Lasseter'],
-      writer: ['Joss Whedon', 'Andrew Stanton', 'Joel Cohen', 'Alec Sokolow']
-    },
-    {
-      id: 1,
-      title: 'The Seven Deadly Sins: Wrath of the Gods',
-      synopsis: 'Led by Woody, Andy\'s toys live happily in his room until Andy\'s birthday brings Buzz Lightyear onto the scene. Afraid of losing his place in Andy\'s heart, Woody plots against Buzz. But when circumstances separate Buzz and Woody from their owner, the duo eventually learns to put aside their differences.',
-      popularity: 21.946943,
-      img: 'https://image.tmdb.org/t/p/original//uXDfjJbdP4ijW5hWSBrPrlKpxab.jpg',
-      genres: ['Action', 'Drama', 'Family'],
-      cast: ['Tom Hanks', 'Tim Allen', 'Don Rickles', 'Jim Varney'],
-      director: ['John Lasseter'],
-      writer: ['Joss Whedon', 'Andrew Stanton', 'Joel Cohen', 'Alec Sokolow']
-    },
-    {
-      id: 1,
-      title: 'The Seven Deadly Sins: Wrath of the Gods',
-      synopsis: 'Led by Woody, Andy\'s toys live happily in his room until Andy\'s birthday brings Buzz Lightyear onto the scene. Afraid of losing his place in Andy\'s heart, Woody plots against Buzz. But when circumstances separate Buzz and Woody from their owner, the duo eventually learns to put aside their differences.',
-      popularity: 21.946943,
-      img: 'https://image.tmdb.org/t/p/original//uXDfjJbdP4ijW5hWSBrPrlKpxab.jpg',
-      genres: ['Action', 'Drama', 'Family'],
-      cast: ['Tom Hanks', 'Tim Allen', 'Don Rickles', 'Jim Varney'],
-      director: ['John Lasseter'],
-      writer: ['Joss Whedon', 'Andrew Stanton', 'Joel Cohen', 'Alec Sokolow']
-    },
-    {
-      id: 1,
-      title: 'The Seven Deadly Sins: Wrath of the Gods',
-      synopsis: 'Led by Woody, Andy\'s toys live happily in his room until Andy\'s birthday brings Buzz Lightyear onto the scene. Afraid of losing his place in Andy\'s heart, Woody plots against Buzz. But when circumstances separate Buzz and Woody from their owner, the duo eventually learns to put aside their differences.',
-      popularity: 21.946943,
-      img: 'https://image.tmdb.org/t/p/original//uXDfjJbdP4ijW5hWSBrPrlKpxab.jpg',
-      genres: ['Action', 'Drama', 'Family'],
-      cast: ['Tom Hanks', 'Tim Allen', 'Don Rickles', 'Jim Varney'],
-      director: ['John Lasseter'],
-      writer: ['Joss Whedon', 'Andrew Stanton', 'Joel Cohen', 'Alec Sokolow']
-    }
-  ];
+  genreSimilarMovies: MovieDTO[] = [];
+  castSimilarMovies: MovieDTO[] = [];
+  ratingsSimilarMovies: MovieDTO[] = [];
+  synopsesSimilarMovies: MovieDTO[] = [];
+  titleSimilarMovies: MovieDTO[] = [];
 
   destroy$: Subject<void> = new Subject<void>();
 
@@ -100,10 +35,54 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
       });
   }
 
-  private loadMovieData(movieId: string): void {
+  private loadMovieData(movieId: number): void {
     this.movieService.getMovieById(movieId)
       .pipe(takeUntil(this.destroy$))
-      .subscribe(movie => this.movie = movie);
+      .subscribe(movies => {
+        if(movies) {
+          this.movie = movies[0];
+          if (this.movie.id) {
+            this.loadSimilarMovies(this.movie.id);
+          }}
+      });
+  }
+
+  private loadSimilarMovies(movieId: number): void {
+    this.loadGenreSimilarMovies(movieId);
+    this.loadCastSimilarMovies(movieId);
+    this.loadRatingsSimilarMovies(movieId);
+    this.loadSynopsesSimilarMovies(movieId);
+    this.loadTitleSimilarMovies(movieId);
+  }
+
+  private loadGenreSimilarMovies(movieId: number): void {
+    this.movieService.getGenreSimilarMovies(movieId)
+    .pipe(takeUntil(this.destroy$))
+    .subscribe(genreSimilarMovies => this.genreSimilarMovies = genreSimilarMovies);
+  }
+
+  private loadCastSimilarMovies(movieId: number): void {
+    this.movieService.getCastCrewSimilarMovies(movieId)
+    .pipe(takeUntil(this.destroy$))
+    .subscribe(castSimilarMovies => this.castSimilarMovies = castSimilarMovies);
+  }
+
+  private loadRatingsSimilarMovies(movieId: number): void {
+    this.movieService.getRatingsSimilarMovies(movieId)
+    .pipe(takeUntil(this.destroy$))
+    .subscribe(ratingsSimilarMovies => this.ratingsSimilarMovies = ratingsSimilarMovies);
+  }
+
+  private loadSynopsesSimilarMovies(movieId: number): void {
+    this.movieService.getSynopsesSimilarMovies(movieId)
+    .pipe(takeUntil(this.destroy$))
+    .subscribe(synopsesSimilarMovies => this.synopsesSimilarMovies = synopsesSimilarMovies);
+  }
+
+  private loadTitleSimilarMovies(movieId: number): void {
+    this.movieService.getTitleSimilarMovies(movieId)
+    .pipe(takeUntil(this.destroy$))
+    .subscribe(titlesSimilarMovies => this.titleSimilarMovies = titlesSimilarMovies);
   }
 
   displayCollectionMovieData(coll: string[] | undefined): string {

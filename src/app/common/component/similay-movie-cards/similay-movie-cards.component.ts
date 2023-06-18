@@ -17,7 +17,8 @@ export class SimilayMovieCardsComponent {
 
   openMovie(movieId: number|undefined): void {
     if (movieId) {
-      this.router.navigate(['/movie-details/' + movieId])
+      this.router.navigate(['/movie-details/' + movieId]);
+      window.scrollTo({top: 0, behavior: 'smooth'});
     }
   }
 
