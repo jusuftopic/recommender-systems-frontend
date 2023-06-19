@@ -1,3 +1,7 @@
 .movie-card {
     cursor: pointer;
 }
+
+.movie-title:hover {
+    color: white;
+}
