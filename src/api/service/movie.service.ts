@@ -44,13 +44,15 @@ export class MovieService {
 
 
   public getTrendingMovies(): Observable<MovieDTO[]> {
-    const movieId = Math.floor(Math.random() * 10) + 1;
-    return this.http.get<MovieDTO[]>(this.baseUrl + 'ratings/' + movieId + '/');
+    return this.http.get<MovieDTO[]>(this.baseUrl + 'titles/' + 1 + '/');
   }
 
   public getPopularMovies(): Observable<MovieDTO[]> {
-    const movieId = Math.floor(Math.random() * 10) + 1;
-    return this.http.get<MovieDTO[]>(this.baseUrl + 'ratings/' + movieId + '/');
+    return this.http.get<MovieDTO[]>(this.baseUrl + 'ratings/' + 1 + '/');
+  }
+
+  public getTopViewMovies(): Observable<MovieDTO[]> {
+    return this.http.get<MovieDTO[]>(this.baseUrl + 'cast/' + 3 + '/');
   }
 
 
