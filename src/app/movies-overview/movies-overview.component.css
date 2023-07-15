@@ -1,0 +1,7 @@
+.movie-title:hover {
+    color: white;
+}
+
+.product_item {
+    cursor: pointer;
+}

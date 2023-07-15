@@ -1,4 +1,7 @@
-<div *ngIf="movie">
+<div *ngIf="loading" id="preloder">
+  <div class="loader"></div>
+</div>
+<div *ngIf="movie && !loading">
   <section class="anime-details spad">
     <div class="container">
       <div class="anime__details__content">
@@ -26,9 +29,6 @@
                     </ul>
                   </div>
                 </div>
-              </div>
-              <div class="anime__details__btn">
-                <a class="follow-btn"><i class="fa fa-heart-o"></i> Follow</a>
               </div>
             </div>
           </div>

@@ -55,5 +55,7 @@ export class MovieService {
     return this.http.get<MovieDTO[]>(this.baseUrl + 'cast/' + 3 + '/');
   }
 
-
+  public getMoviesByTitle(title: string): Observable<MovieDTO[]> {
+    return this.http.get<MovieDTO[]>(this.baseUrl + 'search/' + title + '/');
+  }
 }

@@ -14,6 +14,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MovieDetailsComponent } from './movie-details/movie-details.component';
 import { SimilayMovieCardsComponent } from './common/component/similay-movie-cards/similay-movie-cards.component';
+import { MoviesOverviewComponent } from './movies-overview/movies-overview.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { SimilayMovieCardsComponent } from './common/component/similay-movie-car
     MoviesHomepageComponent,
     SearchDialogComponent,
     MovieDetailsComponent,
-    SimilayMovieCardsComponent
+    SimilayMovieCardsComponent,
+    MoviesOverviewComponent
   ],
   imports: [
     /* COMMON */

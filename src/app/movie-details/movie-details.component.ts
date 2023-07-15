@@ -18,6 +18,8 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
   synopsesSimilarMovies: MovieDTO[] = [];
   titleSimilarMovies: MovieDTO[] = [];
 
+  loading = false;
+
   destroy$: Subject<void> = new Subject<void>();
 
   constructor(private activatedRoute: ActivatedRoute,
@@ -29,7 +31,8 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
     this.activatedRoute.params
       .pipe(takeUntil(this.destroy$))
       .subscribe(params => {
-        if (params['id']) {
+        if (params && params['id']) {
+          this.loading = true;
           this.loadMovieData(params['id'])
         }
       });
@@ -58,31 +61,46 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
   private loadGenreSimilarMovies(movieId: number): void {
     this.movieService.getGenreSimilarMovies(movieId)
     .pipe(takeUntil(this.destroy$))
-    .subscribe(genreSimilarMovies => this.genreSimilarMovies = genreSimilarMovies);
+    .subscribe(genreSimilarMovies =>{
+       this.genreSimilarMovies = genreSimilarMovies;
+       this.loading = false;
+    });
   }
 
   private loadCastSimilarMovies(movieId: number): void {
     this.movieService.getCastCrewSimilarMovies(movieId)
     .pipe(takeUntil(this.destroy$))
-    .subscribe(castSimilarMovies => this.castSimilarMovies = castSimilarMovies);
+    .subscribe(castSimilarMovies => {
+      this.castSimilarMovies = castSimilarMovies;
+      this.loading = false;
+    });
   }
 
   private loadRatingsSimilarMovies(movieId: number): void {
     this.movieService.getRatingsSimilarMovies(movieId)
     .pipe(takeUntil(this.destroy$))
-    .subscribe(ratingsSimilarMovies => this.ratingsSimilarMovies = ratingsSimilarMovies);
+    .subscribe(ratingsSimilarMovies => {
+       this.ratingsSimilarMovies = ratingsSimilarMovies;
+       this.loading = false;
+    });
   }
 
   private loadSynopsesSimilarMovies(movieId: number): void {
     this.movieService.getSynopsesSimilarMovies(movieId)
     .pipe(takeUntil(this.destroy$))
-    .subscribe(synopsesSimilarMovies => this.synopsesSimilarMovies = synopsesSimilarMovies);
+    .subscribe(synopsesSimilarMovies => {
+     this.synopsesSimilarMovies = synopsesSimilarMovies;
+     this.loading = false; 
+    });
   }
 
   private loadTitleSimilarMovies(movieId: number): void {
     this.movieService.getTitleSimilarMovies(movieId)
     .pipe(takeUntil(this.destroy$))
-    .subscribe(titlesSimilarMovies => this.titleSimilarMovies = titlesSimilarMovies);
+    .subscribe(titlesSimilarMovies => {
+      this.titleSimilarMovies = titlesSimilarMovies;
+      this.loading = false;
+    });
   }
 
   displayCollectionMovieData(coll: string[] | undefined): string {

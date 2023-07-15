@@ -14,6 +14,8 @@ export class MoviesHomepageComponent implements OnInit, OnDestroy {
   trendingMovies: MovieDTO[] = [];
   popularMovies: MovieDTO[] = [];
   topViewMovies: MovieDTO[] = [];
+
+  loading = false;
  
   destroy$: Subject<void> = new Subject<void>()
 
@@ -22,6 +24,7 @@ export class MoviesHomepageComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.loading = true;
     this.loadTrendingMovies();
     this.loadPopularMovies();
     this.loadTopViewMovies();
@@ -30,19 +33,28 @@ export class MoviesHomepageComponent implements OnInit, OnDestroy {
   private loadTrendingMovies(): void {
     this.movieService.getTrendingMovies()
       .pipe(takeUntil(this.destroy$))
-      .subscribe(movies => this.trendingMovies = movies);
+      .subscribe(movies => {
+         this.trendingMovies = movies;
+         this.loading = false;
+      });
   }
 
   private loadPopularMovies(): void {
     this.movieService.getPopularMovies()
       .pipe(takeUntil(this.destroy$))
-      .subscribe(movies => this.popularMovies = movies);
+      .subscribe(movies => {
+        this.popularMovies = movies;
+        this.loading = false;
+      });
   }
 
   private loadTopViewMovies() {
     this.movieService.getTopViewMovies()
     .pipe(takeUntil(this.destroy$))
-    .subscribe(movies => this.topViewMovies = movies);
+    .subscribe(movies => {
+      this.topViewMovies = movies;
+      this.loading = false;
+    });
   }
 
   openMovieDetails(movieId: number|undefined) {

@@ -2,8 +2,8 @@
   <div class="h-100 d-flex align-items-center justify-content-center">
     <div class="search-close-switch" (click)="openSearch = false"><i class="icon_close"></i></div>
     <form class="search-model-form">
-      <input [formControl]="movieIdFormControl" (keydown.enter)="onEnter()"
-             type="text" id="search-input" placeholder="Enter movie id and press enter">
+      <input [formControl]="movieTitleFormControl" (keydown.enter)="onEnter()"
+             type="text" id="search-input" placeholder="Enter movie title and press enter">
     </form>
   </div>
 </div>

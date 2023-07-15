@@ -15,7 +15,7 @@ export class SearchDialogComponent implements OnDestroy {
 
   destroy$: Subject<void> = new Subject<void>();
 
-  movieIdFormControl = new FormControl('')
+  movieTitleFormControl = new FormControl('')
 
 
   openSearchSubscription$ = this.openSearchService.openSearchDialog$
@@ -28,13 +28,13 @@ export class SearchDialogComponent implements OnDestroy {
   }
 
   /**
-   * Method triggered every time users type movie id in search input field and press enter button.
+   * Method triggered every time users type movie title in search input field and press enter button.
    * They will be navigated to details page.
    */
   onEnter(): void {
-    const movieId = this.movieIdFormControl?.value;
-    if (movieId) {
-      this.router.navigate(['movie-details', movieId]);
+    const movieTitle = this.movieTitleFormControl?.value;
+    if (movieTitle) {
+      this.router.navigate(['movies-overview', movieTitle]);
     }
   }
 
